@@ -7,52 +7,71 @@
         <style>
             body {
                 font-family: Arial, sans-serif;
-                background-color: #e8f5e9; /* Soft greenish background */
+                background-color: #e8f5e9;
                 margin: 0;
                 padding: 0;
             }
+
             #wrapper {
-                width: 80%;
+                width: 90%;
                 max-width: 750px;
                 margin: 0 auto;
-                margin-top: 80px;
-                background-color: #ffffff; /* White background */
+                margin-top: 40px;
+                background-color: #ffffff;
                 padding: 20px;
                 border-radius: 10px;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             }
+
             h1 {
                 text-align: center;
-                color: #37474f; /* Dark blue-gray text */
+                color: #37474f;
             }
-            #input {
+
+            #wrapper p {
                 text-align: center;
             }
+
+            #input {
+                text-align: center;
+                margin-top: 20px;
+            }
+
             #grade {
-                width: 80%;
+                width: 60%;
+                box-sizing: border-box;
                 padding: 10px;
-                border: 1px solid #cfd8dc; /* Light blue-gray border */
+                border: 1px solid #cfd8dc;
                 border-radius: 5px;
                 font-size: 16px;
+                display: inline-block;
+                vertical-align: middle; 
             }
+
             input[type="button"] {
-                background-color: #4caf50; /* Calming green button */
+                width: 28%; 
+                background-color: #4caf50;
                 color: #fff;
-                padding: 10px 20px;
+                padding: 10px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                margin: 5px;
+                display: inline-block; /* Make button appear on the same line */
+                vertical-align: middle; /* Align button vertically in the middle */
+            }
+
+            .delButton {
+                width: 30%;
+                background-color: #e57373;
+                color: #fff;
+                padding: 5px;
                 border: none;
                 border-radius: 5px;
                 cursor: pointer;
                 margin: 5px;
             }
-            .delButton {
-                background-color: #e57373; /* Soft red delete button */
-                color: #fff;
-                padding: 5px 10px;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                margin: 5px;
-            }      
+
             #output {
                 text-align: center;
                 margin-top: 20px;
@@ -60,13 +79,24 @@
 
             #average {
                 text-align: center;
-                color: #37474f; /* Dark blue-gray text */
+                color: #37474f;
+                font-size: 2em;
+                margin-top: 20px;
+            }
+
+            @media screen and (max-width: 600px) {
+                #grade,
+                input[type="button"],
+                .delButton {
+                    width: 100%;
+                }
             }
         </style>
     </head>
     <body>
         <div id="wrapper">
             <h1>Grade Average Calculator</h1>
+            <p>Start entering grades to calculate the average (we don't accept 0)</p>
             <form name="input" action="" method="GET" id="input" onsubmit="return false;">
                 <input type="number" name="grade" id="grade" onkeypress="return event.charCode >= 48 && event.charCode <= 57" min="1" max="100" onInput="checkGrade()">
                 <input type="button" name="button" value="Submit" onclick="gradeObject.setGrade()">
@@ -74,7 +104,7 @@
                 <input type="button" name="button" value="Restart" onclick="location.reload()">
             </form>
             <div id="output"></div>
-            <h3 id="average"></h3>
+            <p id="average"></p>
         </div>
         <script src="script.js"></script>
     </body>
