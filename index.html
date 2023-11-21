@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Grade Average Calculator</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #e8f5e9; /* Soft greenish background */
+                margin: 0;
+                padding: 0;
+            }
+            #wrapper {
+                width: 80%;
+                max-width: 750px;
+                margin: 0 auto;
+                margin-top: 80px;
+                background-color: #ffffff; /* White background */
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            }
+            h1 {
+                text-align: center;
+                color: #37474f; /* Dark blue-gray text */
+            }
+            #input {
+                text-align: center;
+            }
+            #grade {
+                width: 80%;
+                padding: 10px;
+                border: 1px solid #cfd8dc; /* Light blue-gray border */
+                border-radius: 5px;
+                font-size: 16px;
+            }
+            input[type="button"] {
+                background-color: #4caf50; /* Calming green button */
+                color: #fff;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                margin: 5px;
+            }
+            .delButton {
+                background-color: #e57373; /* Soft red delete button */
+                color: #fff;
+                padding: 5px 10px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                margin: 5px;
+            }      
+            #output {
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            #average {
+                text-align: center;
+                color: #37474f; /* Dark blue-gray text */
+            }
+        </style>
+    </head>
+    <body>
+        <div id="wrapper">
+            <h1>Grade Average Calculator</h1>
+            <form name="input" action="" method="GET" id="input" onsubmit="return false;">
+                <input type="number" name="grade" id="grade" onkeypress="return event.charCode >= 48 && event.charCode <= 57" min="1" max="100" onInput="checkGrade()">
+                <input type="button" name="button" value="Submit" onclick="gradeObject.setGrade()">
+                <input type="button" name="button" value="Calculate" onclick="gradeObject.calcOutputResult()">
+                <input type="button" name="button" value="Restart" onclick="location.reload()">
+            </form>
+            <div id="output"></div>
+            <h3 id="average"></h3>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>
