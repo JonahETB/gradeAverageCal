@@ -1,16 +1,15 @@
 "use strict"
 
-let elementinput = document.getElementById("grade"); // This line gets an input element with the id "grade".
 var gradeObject = {
     grades: [], // An array to store student grades.
+    elementinput: document.getElementById("grade"), // This line gets an input element with the id "grade".
     studentCount: 0, // A variable to keep track of the number of students added. This is improtant when removing grades.
     setGrade: function () {
-        let num = +elementinput.value; // Converts the input value to a number.
-        if (num !== 0){
-            this.grades.push(num); // Adds the grade to the 'grades' array.
-            this.printIndividual(num);
+        if (this.elementInput.value !== 0){
+            this.grades.push(+this.elementInput.value); // Adds the grade to the 'grades' array.
+            this.printIndividual(+this.elementInput.value);
         }
-        elementinput.value = "";
+        this.elementInput.value = "";
     },
     calcAverage: function () {
         let sum = this.grades.reduce((a, b) => a + b, 0);
@@ -22,9 +21,8 @@ var gradeObject = {
         return {high, low};
     },
     calcPassedFailed: function () {
-        // Separate numbers into two arrays: above and below the threshold
         const aboveThreshold = (this.grades.filter(num => num > 50)).length, belowThreshold = (this.grades.filter(num => num <= 50)).length;
-        return{aboveThreshold, belowThreshold};
+        return{aboveThreshold, belowThreshold}; //creates an object out of the function with the grades filtered into the length of each array one above 50 and the other below
     },
     calcOutputResult: function () {
         let passFail = this.calcPassedFailed(), highLow = this.calcHighLow(), cal = this.calcAverage();
@@ -34,8 +32,9 @@ var gradeObject = {
             return;
         } else if (passFail.aboveThreshold === 1) {
             person1 = "person";
-        } else if (passFail.belowThreshold === 1) {
-            person2 = "person";
+            if (passFail.belowThreshold === 1) {
+                person2 = "person";
+            }
         }
         document.getElementById("average").innerHTML = `You entered ${this.grades.length} grades<br>
             The total of all the grades is ${cal.sum}<br> The grade average is ${cal.average}<br>
@@ -71,12 +70,11 @@ var gradeObject = {
             this.printIndividual(this.grades[i]);
         }
     },
-}
-
-function checkGrade () {
-    if (elementinput.value > 100) {
-        elementinput.value = 100;
-    }
+    checkGrade: function () {
+        if (this.elementInput.value > 100) {
+            this.elementInput.value = 100;
+        }
+    },
 }
 
 document.getElementById('input').addEventListener('keydown', function(event) {

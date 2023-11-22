@@ -80,7 +80,7 @@
             #average {
                 text-align: center;
                 color: #37474f;
-                font-size: 2em;
+                font-size: 1.3em;
                 margin-top: 20px;
             }
 
@@ -98,7 +98,7 @@
             <h1>Grade Average Calculator</h1>
             <p>Start entering grades to calculate the average (we don't accept 0)</p>
             <form name="input" action="" method="GET" id="input" onsubmit="return false;">
-                <input type="number" name="grade" id="grade" onkeypress="return event.charCode >= 48 && event.charCode <= 57" min="1" max="100" onInput="checkGrade()">
+                <input type="number" name="grade" id="grade" onkeypress="return event.charCode >= 48 && event.charCode <= 57" min="1" max="100" onInput="gradeObject.checkGrade()">
                 <input type="button" name="button" value="Submit" onclick="gradeObject.setGrade()">
                 <input type="button" name="button" value="Calculate" onclick="gradeObject.calcOutputResult()">
                 <input type="button" name="button" value="Restart" onclick="location.reload()">
