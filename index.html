@@ -53,7 +53,7 @@
             }
             .delButton {
                 background-color:#b12d34;
-                width: 15%;
+                width: 10%;
                 padding: 5px;
             }
             #average {
@@ -67,7 +67,7 @@
             <h1><img src="LRSD.png" alt="lrsd logo"> Louis Riel Grade Average Calculator</h1>
             <p>The sum of all the grades needs to be more than 0</p>
             <form name="input" action="" method="GET" id="input" onsubmit="return false;">
-                <input type="number" name="grade" id="grade" onkeypress="return event.charCode >= 48 && event.charCode <= 57" min="1" max="100" onInput="gradeObject.checkGrade()">
+                <input type="text" name="grade" id="grade" min="1" max="100" onInput="gradeObject.checkGrade()" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || event.charCode == 46">
                 <input type="button" name="button" value="Submit" onclick="gradeObject.setGrade()">
                 <input type="button" name="button" value="Calculate" onclick="gradeObject.calcOutputResult()">
                 <input type="button" name="button" value="Restart" onclick="location.reload()">

@@ -31,21 +31,13 @@ var gradeObject = {
             alert('No students have been added yet or the sum of the grades must be above 0');
             return;
         }
-        document.getElementById("average").innerHTML = `You entered ${this.grades.length} grades<br>
-            The total of all the grades is ${cal.sum}<br> The grade average is ${cal.average}<br>
-            The highest score is ${highLow.high}<br> The lowest score is ${highLow.low}<br>
-            ${passFail.aboveThreshold} ${person1} passed the test.<br> ${passFail.belowThreshold} ${person2} failed the test.<br>`;
+        document.getElementById("average").innerHTML = `You entered ${this.grades.length} grades<br>The total of all the grades is ${cal.sum}<br> The grade average is ${cal.average}<br>The highest score is ${highLow.high}<br> The lowest score is ${highLow.low}<br>${passFail.aboveThreshold} ${person1} passed the test.<br>${passFail.belowThreshold} ${person2} failed the test.<br>`;
     },
     printIndividual: function (num) {
         this.studentCount++;
-        let text = "";
+        let text = num >= 50 ? document.createTextNode(`Student ${this.studentCount} passed with a grade of ${num}% `) : document.createTextNode(`Student ${this.studentCount} failed with a grade  of ${num}% `);
         const p = document.createElement("p"); // Creates a new paragraph element.
                 p.id = `text${this.studentCount}`; // Assigns an id to the paragraph element.
-        if (num >= 50) {
-            text = document.createTextNode(`Student ${this.studentCount} passed with a grade of ${num}% `);
-        } else {
-            text = document.createTextNode(`Student ${this.studentCount} failed with a grade  of ${num}% `);
-        }
                 p.appendChild(text); // Appends the text node to the paragraph element.
         const delButton = document.createElement("input");
                 delButton.type = "submit";
@@ -56,26 +48,22 @@ var gradeObject = {
                 output.appendChild(p);
     },
     removeGrade: function (num) {
-        console.log("run");
         document.getElementById(`output`).innerHTML = "";
         this.studentCount = 0;
-        this.grades.splice(num-1, 1);
-        // Reorders the grades array and updates the display for non-zero grades.
+        this.grades.splice(num-1, 1);  // Reorders the grades array and updates the display for non-zero grades.
         for(let i = 0; i <= this.grades.length - 1; i++) {
             this.printIndividual(this.grades[i]);
         }
     },
     checkGrade: function () {
-        if (this.elementInput.value > 100) {
-            this.elementInput.value = 100;
-        }
+        //checks how big the input number is and it also check the length if anything is out of the ordinary is fixes it
+        let inputValue = this.elementInput.value >= 100 ? this.elementInput.value = 100 : this.elementInput.value = this.elementInput.value;
+        let checkLength = (this.elementInput.value).length >= 6 ? this.elementInput.value = (this.elementInput.value).slice(0, -1) : this.elementInput.value = this.elementInput.value;
     }
 };
 
 document.getElementById('input').addEventListener('keydown', function(event) {
-    // Check if the pressed key is the Enter key
-    if (event.code == 'Enter' || event.code == 'Space') {
-      // Call a function or perform an action when Enter is pressed
-      gradeObject.setGrade();
+    if (event.code == 'Enter' || event.code == 'Space') { // Check if the pressed key is the Enter key or space
+      gradeObject.setGrade(); // Call a function or perform an action when Enter is pressed
     }
   });
