@@ -2,18 +2,18 @@
 
 var gradeObject = {
     grades: [], // An array to store student grades.
-    elementinput: document.getElementById("grade"), // This line gets an input element with the id "grade".
+    elementInput: document.getElementById("grade"), // This line gets an input element with the id "grade".
     studentCount: 0, // A variable to keep track of the number of students added. This is improtant when removing grades.
     setGrade: function () {
-        if (this.elementInput.value !== 0){
-            this.grades.push(+this.elementInput.value); // Adds the grade to the 'grades' array.
-            this.printIndividual(+this.elementInput.value);
+        let inputValue = this.elementInput.value;
+        if (inputValue !== 0){
+            this.grades.push(+inputValue); // Adds the grade to the 'grades' array.
+            this.printIndividual(+inputValue);
         }
         this.elementInput.value = "";
     },
     calcAverage: function () {
-        let sum = this.grades.reduce((a, b) => a + b, 0);
-        let average = (sum/this.grades.length).toFixed(2);
+        let sum = this.grades.reduce((a, b) => a + b, 0), average = (sum/this.grades.length).toFixed(2);
         return {sum, average};
     },
     calcHighLow: function () {
@@ -26,15 +26,10 @@ var gradeObject = {
     },
     calcOutputResult: function () {
         let passFail = this.calcPassedFailed(), highLow = this.calcHighLow(), cal = this.calcAverage();
-        let person1 = "people", person2 = "people";
+        let person1 = passFail.aboveThreshold === 1 ? "person" : "people", person2 = passFail.belowThreshold === 1 ? "person" : "people";
         if(this.grades.length === 0 || cal.sum === 0) {
             alert('No students have been added yet or the sum of the grades must be above 0');
             return;
-        } else if (passFail.aboveThreshold === 1) {
-            person1 = "person";
-            if (passFail.belowThreshold === 1) {
-                person2 = "person";
-            }
         }
         document.getElementById("average").innerHTML = `You entered ${this.grades.length} grades<br>
             The total of all the grades is ${cal.sum}<br> The grade average is ${cal.average}<br>
@@ -74,8 +69,8 @@ var gradeObject = {
         if (this.elementInput.value > 100) {
             this.elementInput.value = 100;
         }
-    },
-}
+    }
+};
 
 document.getElementById('input').addEventListener('keydown', function(event) {
     // Check if the pressed key is the Enter key
