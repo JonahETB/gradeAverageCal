@@ -23,19 +23,19 @@
                 border-radius: 10px;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             }
-            img{
+            h1 img {
                 max-width: 30px;
             }
             #input, #output, #average {
                 margin-top: 20px;
             }
-            #grade {
-                width: 60%;
+            #grade, input[type="button"] {
+                width: 23%;
                 box-sizing: border-box;
                 padding: 10px;
                 border: 1px solid #cfd8dc;
                 border-radius: 5px;
-                font-size: 16px;
+                font-size: 1.1em;
                 display: inline-block;
                 vertical-align: middle; 
             }
@@ -46,17 +46,13 @@
                 margin: 5px;
             }
             input[type="button"] {
-                width: 28%; 
                 background-color: #4caf50;
-                padding: 10px;
-                display: inline-block; /* Make button appear on the same line */
-                vertical-align: middle; /* Align button vertically in the middle */
             }
             input[type="button"]:last-child{
                 background-color:#932227;
             }
             .delButton {
-                background-color:#A4262C;
+                background-color:#b12d34;
                 width: 15%;
                 padding: 5px;
             }
@@ -69,7 +65,7 @@
     <body>
         <div id="wrapper">
             <h1><img src="LRSD.png" alt="lrsd logo"> Louis Riel Grade Average Calculator</h1>
-            <p>Start entering grades to calculate the average (we don't accept 0)</p>
+            <p>The sum of all the grades needs to be more than 0</p>
             <form name="input" action="" method="GET" id="input" onsubmit="return false;">
                 <input type="number" name="grade" id="grade" onkeypress="return event.charCode >= 48 && event.charCode <= 57" min="1" max="100" onInput="gradeObject.checkGrade()">
                 <input type="button" name="button" value="Submit" onclick="gradeObject.setGrade()">
